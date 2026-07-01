@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Налоги без страха — какой налоговый режим выбрать в Кыргызстане</title>
+<meta name="description" content="Простой помощник для начинающих предпринимателей в КР: разберись во всех налоговых режимах без бухгалтерских терминов и подбери свой за пару минут. Ставки по Налоговому кодексу КР." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Onest:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0F2E27; --ink-soft:#3B5650; --paper:#F4F0E7; --paper-2:#ECE6D8;
+    --card:#FFFFFF; --green:#157A5B; --green-deep:#0E5B43; --ochre:#D6A33A;
+    --ochre-soft:#F0DDAE; --sage:#DCE6DD; --line:rgba(15,46,39,.14);
+    --line-strong:rgba(15,46,39,.28);
+    --shadow:0 1px 2px rgba(15,46,39,.06), 0 10px 30px -12px rgba(15,46,39,.18);
+    --r:18px; --maxw:1080px;
+    --display:'Unbounded',system-ui,sans-serif; --body:'Onest',system-ui,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+  body{margin:0;font-family:var(--body);color:var(--ink);background:var(--paper);line-height:1.55;-webkit-font-smoothing:antialiased;font-size:17px}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.08;letter-spacing:-.01em;margin:0}
+  p{margin:0}
+  a{color:inherit}
+  .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  .eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--green-deep);font-weight:500}
+
+  header.site{position:sticky;top:0;z-index:50;background:rgba(244,240,231,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:11px;font-family:var(--display);font-weight:600;font-size:18px;letter-spacing:-.02em}
+  .mark{width:30px;height:30px;flex:0 0 auto}
+  .nav-links{display:flex;gap:24px;align-items:center}
+  .nav-links a{font-size:15px;text-decoration:none;color:var(--ink-soft);font-weight:500}
+  .nav-links a:hover{color:var(--green)}
+  .nav-cta{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:999px;text-decoration:none;font-weight:600;font-size:14.5px}
+  .nav-cta:hover{background:var(--green-deep)}
+  @media(max-width:820px){.nav-links a:not(.nav-cta){display:none}}
+
+  .hero{position:relative;overflow:hidden;padding:74px 0 60px}
+  .hero .sun{position:absolute;right:-120px;top:-90px;width:520px;height:520px;opacity:.5;pointer-events:none}
+  .hero-inner{position:relative;max-width:730px}
+  .hero h1{font-size:clamp(37px,6.2vw,66px);font-weight:600;letter-spacing:-.025em}
+  .hero h1 .hl{color:var(--green)}
+  .hero p.lead{font-size:clamp(18px,2.2vw,21px);color:var(--ink-soft);margin-top:22px;max-width:580px}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px;align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:10px;border:none;cursor:pointer;font-family:var(--body);font-weight:600;font-size:16px;border-radius:999px;padding:15px 26px;text-decoration:none;transition:transform .15s ease, background .2s ease}
+  .btn:active{transform:translateY(1px)}
+  .btn-primary{background:var(--green);color:#fff}
+  .btn-primary:hover{background:var(--green-deep)}
+  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line-strong)}
+  .btn-ghost:hover{border-color:var(--green);color:var(--green)}
+  .hero-note{font-size:14px;color:var(--ink-soft);display:flex;align-items:center;gap:7px}
+
+  section.block{padding:60px 0}
+  .sec-head{max-width:660px;margin-bottom:36px}
+  .sec-head h2{font-size:clamp(28px,4vw,40px);margin-top:12px}
+  .sec-head p{color:var(--ink-soft);margin-top:14px;font-size:18px}
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media(max-width:820px){.steps{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.steps{grid-template-columns:1fr}}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+  .step .n{width:34px;height:34px;border-radius:10px;background:var(--sage);color:var(--green-deep);font-family:var(--mono);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:15px}
+  .step h3{font-size:17px;margin-top:14px;letter-spacing:-.01em}
+  .step p{color:var(--ink-soft);font-size:14.5px;margin-top:7px}
+
+  .analogy{background:var(--ink);color:var(--paper);border-radius:26px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center}
+  .analogy .eyebrow{color:var(--ochre)}
+  .analogy h2{color:var(--paper);font-size:clamp(24px,3.4vw,34px);margin-top:12px}
+  .analogy p{color:#D8E2DC;margin-top:14px}
+  .analogy .viz{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:22px}
+  .plan-row{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px dashed rgba(255,255,255,.18);font-size:15px}
+  .plan-row:last-child{border-bottom:none}
+  .plan-row .tag{font-family:var(--mono);font-size:13px;color:var(--ochre)}
+  @media(max-width:760px){.analogy{grid-template-columns:1fr;padding:28px}}
+
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  @media(max-width:760px){.grid{grid-template-columns:1fr}}
+  .rcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+  .rcard .top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
+  .rcard h3{font-size:21px;letter-spacing:-.02em}
+  .rcard .for{font-size:14px;color:var(--green-deep);font-weight:600;margin-top:6px}
+  .pill{font-family:var(--mono);font-size:12px;font-weight:700;padding:6px 11px;border-radius:999px;background:var(--sage);color:var(--green-deep);white-space:nowrap}
+  .rcard .desc{color:var(--ink-soft);margin-top:14px;font-size:15.5px}
+  .rate{margin-top:18px;padding:14px 16px;background:var(--paper-2);border-radius:12px;border:1px dashed var(--line-strong)}
+  .rate .rl{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .rate .rv{font-family:var(--mono);font-size:19px;font-weight:700;margin-top:4px;color:var(--ink)}
+  .rate .rv small{font-size:13px;color:var(--ink-soft);font-weight:500;font-family:var(--body)}
+  .pm{margin-top:18px;display:grid;gap:8px}
+  .pm div{display:flex;gap:9px;font-size:14.5px;align-items:flex-start}
+  .pm .ic{flex:0 0 auto;margin-top:3px}
+
+  /* special regimes compact */
+  .special{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:820px){.special{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.special{grid-template-columns:1fr}}
+  .scard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 18px;box-shadow:var(--shadow)}
+  .scard .sh{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .scard h3{font-size:16px;letter-spacing:-.01em}
+  .scard p{color:var(--ink-soft);font-size:14px;margin-top:7px}
+  .pill.sm{font-size:11.5px;padding:5px 9px;background:var(--ochre-soft);color:#6B4E16}
+
+  .wizard-shell{background:var(--card);border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow);overflow:hidden}
+  .wz-bar{height:6px;background:var(--paper-2)}
+  .wz-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--green),var(--ochre));width:0;transition:width .4s cubic-bezier(.2,.7,.2,1)}
+  .wz-body{padding:38px}
+  @media(max-width:600px){.wz-body{padding:26px 20px}}
+  .wz-step-no{font-family:var(--mono);font-size:13px;letter-spacing:.12em;color:var(--green-deep);text-transform:uppercase}
+  .wz-q{font-family:var(--display);font-weight:600;font-size:clamp(22px,3.2vw,28px);margin-top:10px;letter-spacing:-.02em}
+  .wz-hint{color:var(--ink-soft);font-size:15px;margin-top:8px}
+  .opts{display:grid;gap:12px;margin-top:24px}
+  .opt{display:flex;align-items:center;gap:14px;text-align:left;width:100%;background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:15px 18px;cursor:pointer;font-family:var(--body);font-size:16.5px;color:var(--ink);transition:border-color .15s, background .15s, transform .1s}
+  .opt:hover{border-color:var(--green);background:#fff}
+  .opt:active{transform:scale(.995)}
+  .opt .emoji{font-size:22px;flex:0 0 auto;width:30px;text-align:center}
+  .opt .sub{display:block;font-size:13.5px;color:var(--ink-soft);margin-top:2px}
+  .wz-foot{display:flex;justify-content:space-between;align-items:center;margin-top:24px}
+  .lnk{background:none;border:none;cursor:pointer;color:var(--ink-soft);font-family:var(--body);font-size:15px;display:inline-flex;align-items:center;gap:7px;padding:8px 4px}
+  .lnk:hover{color:var(--green)}
+  .lnk[disabled]{opacity:.35;cursor:default}
+
+  .receipt{max-width:530px;margin:0 auto;background:#fff;border-radius:14px;position:relative;box-shadow:var(--shadow);padding:8px}
+  .receipt::before,.receipt::after{content:"";position:absolute;left:0;right:0;height:14px;background-image:radial-gradient(circle at 8px 50%, transparent 0 6px, var(--card) 6px);background-size:16px 14px;background-repeat:repeat-x}
+  .receipt::before{top:-7px;transform:rotate(180deg)}
+  .receipt::after{bottom:-7px}
+  .receipt-in{border:1px dashed var(--line-strong);border-radius:8px;padding:26px 24px}
+  .r-top{text-align:center;border-bottom:1px dashed var(--line-strong);padding-bottom:16px}
+  .r-name{font-family:var(--display);font-weight:600;font-size:25px;margin-top:10px;letter-spacing:-.02em;color:var(--green)}
+  .r-for{font-size:14.5px;color:var(--ink-soft);margin-top:6px}
+  .r-line{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px dashed var(--line);font-size:14.5px}
+  .r-line .k{color:var(--ink-soft)}
+  .r-line .v{font-family:var(--mono);font-weight:700;text-align:right}
+  .r-why{background:var(--paper);border-radius:10px;padding:14px 16px;margin-top:16px;font-size:14.5px;color:var(--ink-soft)}
+  .r-why b{color:var(--ink)}
+  .r-alt{margin-top:16px;font-size:14px;color:var(--ink-soft)}
+  .r-alt b{color:var(--green-deep)}
+  .r-foot{text-align:center;margin-top:18px;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;color:var(--ink-soft);text-transform:uppercase}
+  .result-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:#fff;box-shadow:var(--shadow)}
+  table{border-collapse:collapse;width:100%;min-width:660px}
+  th,td{padding:15px 18px;text-align:left;border-bottom:1px solid var(--line);font-size:15px;vertical-align:top}
+  thead th{background:var(--ink);color:var(--paper);font-family:var(--display);font-weight:500;font-size:14.5px;letter-spacing:-.01em}
+  tbody tr:last-child td{border-bottom:none}
+  td.lbl{font-weight:600;color:var(--ink);background:var(--paper-2)}
+  td .mono{font-weight:700}
+  tbody tr:hover td:not(.lbl){background:var(--sage)}
+
+  /* glossary */
+  .gloss{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:760px){.gloss{grid-template-columns:1fr}}
+  .gitem{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px;box-shadow:var(--shadow)}
+  .gitem dt{font-weight:700;font-size:16px;color:var(--green-deep)}
+  .gitem dd{margin:6px 0 0;color:var(--ink-soft);font-size:14.5px}
+
+  /* faq */
+  .faq{display:grid;gap:12px;max-width:820px}
+  details{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+  summary{cursor:pointer;padding:18px 22px;font-weight:600;font-size:16.5px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";font-family:var(--mono);font-size:22px;color:var(--green);transition:transform .2s}
+  details[open] summary::after{transform:rotate(45deg)}
+  details .a{padding:0 22px 20px;color:var(--ink-soft);font-size:15px}
+
+  .mlist{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:760px){.mlist{grid-template-columns:1fr}}
+  .mcard{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;box-shadow:var(--shadow)}
+  .mcard .num{font-family:var(--mono);font-size:13px;color:var(--ochre);font-weight:700;letter-spacing:.1em}
+  .mcard h3{font-size:18px;margin-top:8px;letter-spacing:-.01em}
+  .mcard p{color:var(--ink-soft);margin-top:8px;font-size:15px}
+
+  .cta{background:linear-gradient(135deg,var(--green-deep),var(--ink));color:var(--paper);border-radius:28px;padding:52px 44px;position:relative;overflow:hidden}
+  .cta .sun{position:absolute;right:-80px;bottom:-120px;width:380px;opacity:.35;pointer-events:none}
+  .cta-inner{position:relative;max-width:620px}
+  .cta h2{color:#fff;font-size:clamp(26px,3.6vw,38px)}
+  .cta p{color:#D6E2DC;margin-top:16px;font-size:18px}
+  .cta .btn-primary{background:var(--ochre);color:var(--ink);margin-top:28px}
+  .cta .btn-primary:hover{background:#E6B958}
+  @media(max-width:600px){.cta{padding:36px 26px}}
+
+  .disclaimer{display:flex;gap:14px;background:var(--ochre-soft);border:1px solid var(--ochre);border-radius:16px;padding:18px 20px;margin-top:32px;font-size:14.5px;color:#6B4E16}
+  .disclaimer svg{flex:0 0 auto;margin-top:2px}
+  .disclaimer b{color:#5A4112}
+  footer.site{border-top:1px solid var(--line);margin-top:60px;padding:34px 0;color:var(--ink-soft);font-size:14px}
+  .foot-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+  .fade{animation:fade .35s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <circle cx="16" cy="16" r="15" fill="#157A5B"/>
+        <g stroke="#F4F0E7" stroke-width="1.4" stroke-linecap="round"><path d="M16 5v22M5 16h22M8.5 8.5l15 15M23.5 8.5l-15 15"/></g>
+        <circle cx="16" cy="16" r="4.2" fill="#D6A33A"/>
+      </svg>
+      Налоги без страха
+    </div>
+    <nav class="nav-links">
+      <a href="#start">С чего начать</a>
+      <a href="#rezhimy">Режимы</a>
+      <a href="#podbor">Подбор</a>
+      <a href="#slovar">Словарь</a>
+      <a href="#consult" class="nav-cta">Консультация</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <svg class="sun" viewBox="0 0 200 200" aria-hidden="true">
+    <g stroke="#D6A33A" stroke-width="2.4" stroke-linecap="round"><g id="rays"></g></g>
+    <circle cx="100" cy="100" r="34" fill="none" stroke="#D6A33A" stroke-width="2.4"/>
+  </svg>
+  <div class="wrap hero-inner">
+    <span class="eyebrow">Для начинающих предпринимателей в Кыргызстане</span>
+    <h1 style="margin-top:18px">Налоги — это не страшно. <span class="hl">Это выбор тарифа.</span></h1>
+    <p class="lead">Открываешь дело и совсем не понимаешь, с чего начать и по какому режиму платить? Здесь — простым языком, без единого сложного термина. Разберёшься за пару минут и подберёшь свой вариант.</p>
+    <div class="hero-actions">
+      <a href="#podbor" class="btn btn-primary">Подобрать режим
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#start" class="btn btn-ghost">Я вообще новичок</a>
+    </div>
+    <div class="hero-note" style="margin-top:20px">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#157A5B" stroke-width="1.6"/><path d="M12 7v5l3 2" stroke="#157A5B" stroke-width="1.6" stroke-linecap="round"/></svg>
+      Бесплатно · без регистрации · ставки по Налоговому кодексу КР
+    </div>
+  </div>
+</section>
+
+<!-- С ЧЕГО НАЧАТЬ -->
+<section class="block" id="start"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">Самое начало</span>
+    <h2>Путь предпринимателя за 4 шага</h2>
+    <p>Если ты вообще ничего не знаешь про налоги — вот вся картина целиком. Дальше разберём каждый режим подробно.</p>
+  </div>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><h3>Выбери форму</h3><p>Кем ты будешь: ИП (сам), ОсОО (компания) или физлицо на патенте. От этого зависит остальное.</p></div>
+    <div class="step"><div class="n">2</div><h3>Выбери режим</h3><p>Тот самый «тариф»: патент, единый налог, общий режим или особый. Ниже поможем выбрать.</p></div>
+    <div class="step"><div class="n">3</div><h3>Зарегистрируйся</h3><p>Встань на учёт в налоговой и укажи выбранный режим. Обычно это делается один раз при старте.</p></div>
+    <div class="step"><div class="n">4</div><h3>Плати и отчитывайся</h3><p>Веди простой учёт выручки, вовремя плати налог и сдавай отчёты. На простых режимах это несложно.</p></div>
+  </div>
+</div></section>
+
+<!-- АНАЛОГИЯ -->
+<section class="block"><div class="wrap">
+  <div class="analogy">
+    <div>
+      <span class="eyebrow">Простыми словами</span>
+      <h2>Налоговый режим — как тарифный план у оператора</h2>
+      <p>У телефона ты выбираешь тариф под себя: кому-то выгоден безлимит, кому-то поминутный. С налогами так же. Государство предлагает несколько «тарифов»: на одном платишь маленький процент с выручки и почти не ведёшь учёт, на другом — больше отчётности, но можешь работать с крупными клиентами.</p>
+      <p style="margin-top:12px">Задача — выбрать тот, где ты платишь честно, но не переплачиваешь и не тонешь в бумагах.</p>
+    </div>
+    <div class="viz">
+      <div class="plan-row"><span>Маленькое дело, розница</span><span class="tag">→ патент</span></div>
+      <div class="plan-row"><span>ИП/ОсОО, обычный бизнес</span><span class="tag">→ единый налог</span></div>
+      <div class="plan-row"><span>Клиентам нужен НДС</span><span class="tag">→ общий режим</span></div>
+      <div class="plan-row"><span>IT-компания</span><span class="tag">→ ПВТ</span></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ОСНОВНЫЕ РЕЖИМЫ -->
+<section class="block" id="rezhimy"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">Четыре главных «тарифа»</span>
+    <h2>Основные режимы — с них начинают почти все</h2>
+    <p>Коротко: для кого подходит, в чём плюс, в чём подвох и сколько примерно платить.</p>
+  </div>
+  <div class="grid">
+
+    <article class="rcard">
+      <div class="top"><div><h3>Патент</h3><div class="for">Для самых маленьких</div></div><span class="pill">проще некуда</span></div>
+      <p class="desc">Платишь фиксированную сумму вперёд — и работаешь. Отчётности почти нет. Для физлица и ИП с небольшим оборотом: мелкая розница, бытовые услуги, ремонт. Базовую сумму по видам утверждает Кабмин.</p>
+      <div class="rate"><div class="rl">Сколько платить</div><div class="rv">фикс. сумма <small>лимит выручки 8 млн сом/год, кроме торговли</small></div></div>
+      <div class="pm">
+        <div><span class="ic">✅</span> Минимум бумаг, сумма известна заранее</div>
+        <div><span class="ic">⚠️</span> Не для ОсОО, импортёров, экспортёров и дистрибьюторов</div>
+      </div>
+    </article>
+
+    <article class="rcard">
+      <div class="top"><div><h3>Единый налог <span style="font-family:var(--body);font-weight:500;font-size:14px;color:var(--ink-soft)">(упрощёнка)</span></h3><div class="for">Для большинства ИП и ОсОО</div></div><span class="pill">золотая середина</span></div>
+      <p class="desc">Платишь один процент с выручки — он заменяет налог на прибыль, НДС и налог с продаж. Учёт несложный. Самый популярный выбор у малого и среднего бизнеса.</p>
+      <div class="rate"><div class="rl">Ставка с выручки</div><div class="rv">0,5–6% <small>зависит от вида и формы оплаты; безнал дешевле</small></div></div>
+      <div class="pm">
+        <div><span class="ic">✅</span> Один налог вместо трёх, простой учёт</div>
+        <div><span class="ic">⚠️</span> Не подходит, если клиентам нужен НДС</div>
+      </div>
+    </article>
+
+    <article class="rcard">
+      <div class="top"><div><h3>Общий режим</h3><div class="for">Когда работаешь «по-крупному»</div></div><span class="pill">с НДС</span></div>
+      <p class="desc">Платишь налог на прибыль, НДС и налог с продаж, ведёшь полноценный учёт. Нужен, если клиенты-юрлица требуют счёт-фактуру с НДС или ты экспортируешь. Регистрация по НДС наступает автоматически.</p>
+      <div class="rate"><div class="rl">Прибыль · НДС · с продаж</div><div class="rv">10% · 12% <small>+ налог с продаж 1–3%</small></div></div>
+      <div class="pm">
+        <div><span class="ic">✅</span> Работа с крупными клиентами и экспорт, возврат НДС</div>
+        <div><span class="ic">⚠️</span> Больше отчётности — почти всегда нужен бухгалтер</div>
+      </div>
+    </article>
+
+    <article class="rcard">
+      <div class="top"><div><h3>ПВТ</h3><div class="for">Для IT-компаний</div></div><span class="pill">льготный</span></div>
+      <p class="desc">Парк высоких технологий — особый режим для IT (разработка, ПО, экспорт услуг). Резидент освобождён от налога на прибыль, НДС и налога с продаж, плюс льготы по зарплатным налогам. Нужно стать резидентом Парка.</p>
+      <div class="rate"><div class="rl">Основные налоги</div><div class="rv">освобождение <small>от прибыли, НДС и налога с продаж</small></div></div>
+      <div class="pm">
+        <div><span class="ic">✅</span> Очень выгодно для IT и экспорта IT-услуг</div>
+        <div><span class="ic">⚠️</span> Только для резидентов Парка — есть требования</div>
+      </div>
+    </article>
+
+  </div>
+</div></section>
+
+<!-- ОСОБЫЕ РЕЖИМЫ -->
+<section class="block"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">Для отдельных сфер</span>
+    <h2>Особые режимы — если у тебя нишевый бизнес</h2>
+    <p>Кодекс предусматривает отдельные режимы для специфических видов деятельности. Большинству новичков они не нужны, но пусть будут перед глазами — вдруг это про тебя.</p>
+  </div>
+  <div class="special">
+    <div class="scard"><div class="sh"><h3>Свободные эконом. зоны (СЭЗ)</h3><span class="pill sm">освобожд.</span></div><p>Для производств в специальных зонах. Резидент освобождается от налогов при соблюдении условий.</p></div>
+    <div class="scard"><div class="sh"><h3>Электронная торговля</h3><span class="pill sm">2%</span></div><p>Особый режим для деятельности в сфере электронной торговли — интернет-площадки и онлайн-продажи.</p></div>
+    <div class="scard"><div class="sh"><h3>Майнинг</h3><span class="pill sm">10%</span></div><p>Для добычи криптовалюты. Заменяет налог на прибыль, НДС и налог с продаж.</p></div>
+    <div class="scard"><div class="sh"><h3>Игорная деятельность</h3><span class="pill sm">фикс.</span></div><p>Букмекеры, тотализаторы, казино. Фиксированные ставки по видам объектов, суммы крупные.</p></div>
+    <div class="scard"><div class="sh"><h3>Зона торговли с особым режимом</h3><span class="pill sm">по Кабмину</span></div><p>Крупные торговые рынки. Ставка считается по формуле, размер определяет Кабмин.</p></div>
+    <div class="scard"><div class="sh"><h3>Налог на транзакцию</h3><span class="pill sm">0,1%</span></div><p>Особый режим с налогом всего 0,1% от базы для отдельных видов деятельности.</p></div>
+    <div class="scard"><div class="sh"><h3>Территория «Тамчы»</h3><span class="pill sm">особый</span></div><p>Специальная финансово-инвестиционная территория с собственным правовым и налоговым статусом.</p></div>
+  </div>
+</div></section>
+
+<!-- МАСТЕР ПОДБОРА -->
+<section class="block" id="podbor"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">Подбор за пару минут</span>
+    <h2>Давай найдём твой режим</h2>
+    <p>Ответь на 6 простых вопросов. Никаких терминов — выбирай то, что ближе к твоей ситуации.</p>
+  </div>
+
+  <div class="wizard-shell">
+    <div class="wz-bar"><i id="wzfill"></i></div>
+    <div class="wz-body" id="wzbody"></div>
+  </div>
+
+  <div class="disclaimer">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3l9 16H3L12 3z" stroke="#9A7420" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 10v4M12 16.5v.5" stroke="#9A7420" stroke-width="1.7" stroke-linecap="round"/></svg>
+    <div><b>Важно:</b> ставки выверены по Налоговому кодексу КР (от 18.01.2022 № 3) в редакции до 31 декабря 2025 года. Это ориентир, а не официальная консультация: базовые суммы патента утверждает Кабмин, а точный режим зависит от деталей бизнеса — уточни у бухгалтера перед регистрацией.</div>
+  </div>
+</div></section>
+
+<!-- СРАВНЕНИЕ -->
+<section class="block" id="sravnenie"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">Всё рядом</span>
+    <h2>Сравнение основных режимов</h2>
+    <p>Одна таблица, чтобы увидеть разницу. Цифры — по Налоговому кодексу КР, редакция до 31 декабря 2025 года.</p>
+  </div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Параметр</th><th>Патент</th><th>Единый налог</th><th>Общий режим</th><th>ПВТ (IT)</th></tr></thead>
+      <tbody>
+        <tr><td class="lbl">Кому подходит</td><td>Физлицо/ИП, мелкая розница и услуги</td><td>Малый и средний бизнес</td><td>Работа с НДС, экспорт</td><td>IT-компании</td></tr>
+        <tr><td class="lbl">Сколько платить</td><td><span class="mono">фикс.</span></td><td><span class="mono">0,5–6%</span> с выручки</td><td><span class="mono">10%</span> приб. + <span class="mono">12%</span> НДС</td><td><span class="mono">освобожд.</span></td></tr>
+        <tr><td class="lbl">Сложность учёта</td><td>Минимальная</td><td>Невысокая</td><td>Высокая</td><td>Средняя</td></tr>
+        <tr><td class="lbl">Нужен бухгалтер</td><td>Обычно нет</td><td>Желательно</td><td>Да</td><td>Да</td></tr>
+        <tr><td class="lbl">Лимит по обороту</td><td><span class="mono">8 млн</span> (кроме торговли)</td><td>Брекеты ставок</td><td>Без лимита</td><td>По статусу резидента</td></tr>
+        <tr><td class="lbl">Работа с НДС</td><td>Нет</td><td>Нет</td><td>Да, автоматически</td><td>Освобождение</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div></section>
+
+<!-- СЛОВАРЬ -->
+<section class="block" id="slovar"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">Мини-словарь</span>
+    <h2>Термины, которые пугают новичков</h2>
+    <p>Всё, что встретится при регистрации, — по-человечески.</p>
+  </div>
+  <dl class="gloss">
+    <div class="gitem"><dt>Выручка</dt><dd>Все деньги, которые пришли от продаж. Это не прибыль — расходы ещё не вычтены.</dd></div>
+    <div class="gitem"><dt>Прибыль</dt><dd>То, что осталось: выручка минус расходы. С неё платят налог на общем режиме.</dd></div>
+    <div class="gitem"><dt>НДС</dt><dd>Налог на добавленную стоимость, добавляется к цене товара. Его платят на общем режиме.</dd></div>
+    <div class="gitem"><dt>Счёт-фактура</dt><dd>Документ на поставку товара или услуги. На нём держится учёт НДС между компаниями.</dd></div>
+    <div class="gitem"><dt>ККМ (касса)</dt><dd>Контрольно-кассовая машина. Пробивать чек покупателю обязательно почти на всех режимах.</dd></div>
+    <div class="gitem"><dt>Налоговый агент</dt><dd>Когда ты удерживаешь и платишь налог за другого — например, подоходный с зарплаты работника.</dd></div>
+    <div class="gitem"><dt>ИП и ОсОО</dt><dd>ИП — предприниматель-физлицо, отвечает сам. ОсОО — компания-юрлицо, отдельная от владельца.</dd></div>
+    <div class="gitem"><dt>Единый налог</dt><dd>Один налог с выручки, который заменяет сразу три: прибыль, НДС и налог с продаж.</dd></div>
+  </dl>
+</div></section>
+
+<!-- FAQ -->
+<section class="block"><div class="wrap">
+  <div class="sec-head"><span class="eyebrow">Вопрос-ответ</span><h2>Что чаще всего спрашивают</h2></div>
+  <div class="faq">
+    <details><summary>ИП или ОсОО — что выбрать новичку?</summary><div class="a">ИП проще и дешевле в ведении — подходит, когда ты работаешь один или небольшой командой. ОсОО выбирают, когда есть партнёры, нужна ограниченная ответственность или планируются крупные контракты. Многие начинают с ИП.</div></details>
+    <details><summary>Можно ли потом поменять режим?</summary><div class="a">Да. Режим меняется по заявлению в налоговую, обычно со следующего квартала или месяца — в зависимости от режима. То есть выбор при старте не приговор, но лучше сразу выбрать удачно.</div></details>
+    <details><summary>Что будет, если оборот вырастет?</summary><div class="a">Если ты вышел за рамки своего режима (например, превысил лимит патента), нужно вовремя подать заявление и перейти на другой режим. Если этого не сделать, налоговая может перевести тебя на общий режим — иногда задним числом. Поэтому за оборотом стоит следить.</div></details>
+    <details><summary>Когда платить налог и сдавать отчёты?</summary><div class="a">Зависит от режима. Единый налог обычно считается и платится ежеквартально, налог с продаж — ежемесячно. Точные сроки уточни в налоговой или у бухгалтера, чтобы не попасть на пеню.</div></details>
+    <details><summary>Мне точно нужен бухгалтер?</summary><div class="a">На патенте и упрощёнке многие справляются сами — учёт простой. На общем режиме с НДС бухгалтер почти обязателен. Если сомневаешься — разовая консультация на старте сэкономит намного больше, чем стоит.</div></details>
+  </div>
+</div></section>
+
+<!-- ОШИБКИ -->
+<section class="block"><div class="wrap">
+  <div class="sec-head"><span class="eyebrow">На что обратить внимание</span><h2>Частые ошибки новичков</h2></div>
+  <div class="mlist">
+    <div class="mcard"><div class="num">01</div><h3>Выбрать упрощёнку, когда клиентам нужен НДС</h3><p>Если твои покупатели — юрлица на общем режиме, им нужен счёт-фактура с НДС. На едином налоге ты его не дашь — и потеряешь клиентов.</p></div>
+    <div class="mcard"><div class="num">02</div><h3>Не следить за лимитом оборота</h3><p>Превысил порог — режим меняется, иногда задним числом. Лучше считать оборот заранее и не ловить сюрприз.</p></div>
+    <div class="mcard"><div class="num">03</div><h3>Путать наличную и безналичную ставку</h3><p>На едином налоге безнал почти всегда дешевле нала — иногда вдвое. Стоит вести расчёты через счёт, где это выгодно.</p></div>
+    <div class="mcard"><div class="num">04</div><h3>Регистрироваться, не посчитав налог наперёд</h3><p>Один и тот же бизнес на разных режимах платит по-разному. Иногда «простой» режим в итоге дороже. Посчитать стоит до старта.</p></div>
+  </div>
+</div></section>
+
+<!-- CTA -->
+<section class="block" id="consult"><div class="wrap">
+  <div class="cta">
+    <svg class="sun" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="40" fill="none" stroke="#D6A33A" stroke-width="3"/><g stroke="#D6A33A" stroke-width="3" stroke-linecap="round" id="rays2"></g></svg>
+    <div class="cta-inner">
+      <span class="eyebrow" style="color:var(--ochre)">Личная консультация</span>
+      <h2 style="margin-top:12px">Не хочешь гадать — давай посчитаем вместе</h2>
+      <p>Помогу выбрать режим под твой бизнес, посчитать налог наперёд и оформить регистрацию правильно с первого раза. Веду бухгалтерию ИП, ОсОО и ТСЖ в Бишкеке.</p>
+      <a href="https://wa.me/996555887224?text=Здравствуйте!%20Пишу%20с%20сайта%20про%20налоги%20—%20нужна%20консультация%20по%20выбору%20режима." target="_blank" rel="noopener" class="btn btn-primary" id="contactBtn">Написать в WhatsApp
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</div></section>
+
+<footer class="site"><div class="wrap foot-row">
+  <div>© <span id="yr"></span> Налоги без страха · Бишкек, Кыргызстан</div>
+  <div>Информация ознакомительная и не заменяет консультацию специалиста.</div>
+</div></footer>
+
+<script>
+/* =========================================================
+   СТАВКИ — выверены по Налоговому кодексу КР (от 18.01.2022 № 3),
+   в редакции до 31 декабря 2025 года. Меняй здесь при обновлениях.
+   Единый налог — ст.423 · Патент — гл.56 · Прибыль — ст.240 ·
+   НДС — ст.252 · Налог с продаж — ст.368 · ПВТ — ст.434 ·
+   Майнинг — ст.439 (10%) · Эл.торговля — ст.446 (2%) · Транзакция — ст.473 (0,1%)
+   ========================================================= */
+const RATES = {
+  edn:"0,5–6%", patent:"фикс. сумма", patent_limit:"8 млн сом / год",
+  osn_profit:"10%", osn_vat:"12%", osn_sales:"1–3%", htp:"освобождение"
+};
+
+const STEPS = [
+  {key:"form", no:"Вопрос 1 из 6", q:"Как ты планируешь оформиться?",
+   hint:"Не решил — выбери последнее, подскажем по ходу.",
+   opts:[
+     {emoji:"👤",label:"ИП",sub:"индивидуальный предприниматель",val:"ip"},
+     {emoji:"🏢",label:"ОсОО",sub:"компания (юрлицо)",val:"ooo"},
+     {emoji:"🧑‍💻",label:"Работаю сам на себя",sub:"мелкие услуги, фриланс",val:"self"},
+     {emoji:"🤔",label:"Пока не решил",sub:"нужна подсказка",val:"unknown"}
+   ]},
+  {key:"sphere", no:"Вопрос 2 из 6", q:"Чем будешь заниматься?",
+   hint:"Выбери, что ближе всего к основному делу.",
+   opts:[
+     {emoji:"🛍️",label:"Торговля",sub:"продажа товаров, магазин",val:"trade"},
+     {emoji:"💇",label:"Услуги",sub:"салон, ремонт, бытовое",val:"service"},
+     {emoji:"🍜",label:"Общепит",sub:"кафе, столовая, бар",val:"catering"},
+     {emoji:"🏭",label:"Производство",sub:"изготовление продукции",val:"manufacture"},
+     {emoji:"💻",label:"IT и разработка",sub:"ПО, сайты, цифровые услуги",val:"it"},
+     {emoji:"📦",label:"Онлайн-торговля",sub:"интернет-магазин, маркетплейс",val:"online"}
+   ]},
+  {key:"turnover", no:"Вопрос 3 из 6", q:"Какой примерно оборот за год ожидаешь?",
+   hint:"Это выручка (все поступления), не прибыль. Прикинь по-крупному.",
+   opts:[
+     {emoji:"🌱",label:"До 8 млн сом",sub:"только начинаю, скромно",val:"low"},
+     {emoji:"📈",label:"8–50 млн сом",sub:"бизнес работает стабильно",val:"mid"},
+     {emoji:"🚀",label:"Больше 50 млн сом",sub:"крупные обороты",val:"high"}
+   ]},
+  {key:"clients", no:"Вопрос 4 из 6", q:"Кто твои покупатели?",
+   hint:"Это решает, нужен ли тебе НДС.",
+   opts:[
+     {emoji:"🧍",label:"Обычные люди",sub:"розница, физлица",val:"b2c"},
+     {emoji:"🏢",label:"Компании, которым нужен НДС",sub:"работаю с юрлицами",val:"b2b"},
+     {emoji:"🌍",label:"Экспорт за рубеж",sub:"продаю в другие страны",val:"export"}
+   ]},
+  {key:"pay", no:"Вопрос 5 из 6", q:"Как с тобой в основном расплачиваются?",
+   hint:"На упрощёнке безнал часто дешевле нала — вплоть до вдвое.",
+   opts:[
+     {emoji:"💵",label:"В основном наличными",sub:"кассой, купюрами",val:"cash"},
+     {emoji:"💳",label:"В основном безналично",sub:"переводом, картой, на счёт",val:"cashless"},
+     {emoji:"⚖️",label:"Примерно поровну",sub:"и так, и так",val:"mixed"}
+   ]},
+  {key:"books", no:"Вопрос 6 из 6", q:"Насколько готов возиться с учётом?",
+   hint:"Честно — это влияет на выбор режима.",
+   opts:[
+     {emoji:"😌",label:"Хочу попроще",sub:"минимум отчётов и бумаг",val:"simple"},
+     {emoji:"💪",label:"Готов вести полный учёт",sub:"или найму бухгалтера",val:"full"}
+   ]}
+];
+
+/* ставка единого налога под конкретный ответ (ст.423) */
+function ednRate(a){
+  var pay=a.pay;
+  if(a.sphere==="trade") return "0,5% для обычной розницы до 50 млн · иначе 4% нал / 2% безнал";
+  if(a.sphere==="manufacture"||a.sphere==="it") return pay==="cash"?"4% (наличными)":pay==="cashless"?"2% (безналично)":"4% нал / 2% безнал";
+  return pay==="cash"?"6% (наличными)":pay==="cashless"?"4% (безналично)":"6% нал / 4% безнал"; // услуги, общепит, прочее
+}
+
+const RESULT = {
+  htp:{name:"ПВТ — Парк высоких технологий", forwhom:"для IT-компаний",
+    rateLabel:"Основные налоги", rateVal:()=>RATES.htp,
+    rows:[["Освобождение от","прибыль · НДС · налог с продаж"],["Зарплатные налоги","льготы по Закону о ПВТ"],["Условие","статус резидента Парка"]],
+    why:"Ты в <b>IT</b>, а для этой сферы ПВТ почти всегда выгоднее всего: резидент Парка освобождён от налога на прибыль, НДС и налога с продаж, а по зарплатным налогам действуют льготы.",
+    alt:"Если статус резидента Парка получить не выйдет — присмотрись к <b>единому налогу</b> (разработка ПО: 4% нал / 2% безнал)."},
+  online:{name:"Единый налог для онлайн-продаж", forwhom:"для интернет-торговли",
+    rateLabel:"Ставка с выручки", rateVal:(a)=>"торговля: 0,5–4%",
+    rows:[["База","выручка, поступившая на счёт"],["Альтернатива","режим электронной торговли — 2%"],["Плюс","безнал по определению — ставка ниже"]],
+    why:"Ты торгуешь <b>онлайн</b>. Обычно это единый налог с торговой ставкой, а оплата почти всегда безналичная — значит ставка минимальная. Для платформ и площадок есть отдельный режим электронной торговли под 2%.",
+    alt:"Если вырастешь в крупную площадку или маркетплейс — сравни с режимом <b>электронной торговли (2%)</b>."},
+  patent:{name:"Патент", forwhom:"для небольшого дела",
+    rateLabel:"Платёж", rateVal:()=>RATES.patent,
+    rows:[["Отчётность","минимальная"],["Сумму утверждает","Кабинет Министров"],["Лимит выручки",RATES.patent_limit+" (кроме торговли)"]],
+    why:"У тебя <b>небольшой оборот</b> и простая сфера — патент даёт фиксированный платёж и почти ноль бумаг. Самый спокойный старт.",
+    alt:"Патент не для ОсОО, импортёров, экспортёров и дистрибьюторов — им прямая дорога на <b>единый налог</b>."},
+  edn:{name:"Единый налог (упрощёнка)", forwhom:"для большинства ИП и ОсОО",
+    rateLabel:"Твоя ставка", rateVal:(a)=>ednRate(a),
+    rows:[["Заменяет","прибыль + НДС + налог с продаж"],["Учёт","несложный"],["Совет","безнал почти всегда дешевле нала"]],
+    why:"Твои клиенты — <b>обычные люди</b>, НДС им не нужен. Один понятный процент с выручки вместо трёх налогов — оптимально для твоей ситуации.",
+    alt:"Если появятся клиенты-юрлица с НДС — посмотри в сторону <b>общего режима</b>."},
+  osn:{name:"Общий режим", forwhom:"для работы с НДС и крупным оборотом",
+    rateLabel:"Прибыль · НДС", rateVal:()=>RATES.osn_profit+" · "+RATES.osn_vat,
+    rows:[["Налоги","прибыль + НДС + налог с продаж"],["Налог с продаж",RATES.osn_sales],["НДС","регистрация автоматически"]],
+    why:"Тебе нужен <b>НДС</b> — либо клиенты-юрлица его требуют, либо оборот большой, либо ты экспортируешь и хочешь возвращать НДС. На общем режиме регистрация по НДС наступает автоматически.",
+    alt:"Если на деле НДС не понадобится и оборот поменьше — на упрощёнке выйдет дешевле. Стоит посчитать оба варианта."}
+};
+
+function decide(a){
+  if(a.sphere==="it" && a.form!=="self") return "htp";
+  if(a.sphere==="online") return "online";
+  if(a.clients==="b2b" || a.clients==="export" || a.turnover==="high") return "osn";
+  if(a.form!=="ooo" && a.turnover==="low" && a.books==="simple") return "patent";
+  return "edn";
+}
+
+const body=document.getElementById('wzbody');
+const fill=document.getElementById('wzfill');
+let idx=0; const answers={};
+
+function renderStep(){
+  const s=STEPS[idx];
+  fill.style.width=((idx)/STEPS.length*100)+'%';
+  body.className='wz-body fade';
+  body.innerHTML=`
+    <div class="wz-step-no">${s.no}</div>
+    <div class="wz-q">${s.q}</div>
+    <div class="wz-hint">${s.hint}</div>
+    <div class="opts">${s.opts.map((o)=>`
+      <button class="opt" data-val="${o.val}">
+        <span class="emoji">${o.emoji}</span>
+        <span><strong>${o.label}</strong><span class="sub">${o.sub}</span></span>
+      </button>`).join('')}
+    </div>
+    <div class="wz-foot">
+      <button class="lnk" id="back" ${idx===0?'disabled':''}>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Назад
+      </button>
+      <span class="lnk" style="cursor:default">${idx+1} / ${STEPS.length}</span>
+    </div>`;
+  body.querySelectorAll('.opt').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      answers[s.key]=btn.dataset.val;
+      if(idx<STEPS.length-1){idx++;renderStep();} else {renderResult();}
+    });
+  });
+  const back=document.getElementById('back');
+  if(back) back.addEventListener('click',()=>{if(idx>0){idx--;renderStep();}});
+}
+
+function renderResult(){
+  fill.style.width='100%';
+  const key=decide(answers);
+  const r=RESULT[key];
+  const rateVal=(typeof r.rateVal==='function')?r.rateVal(answers):r.rateVal;
+  body.className='wz-body fade';
+  body.innerHTML=`
+    <div class="receipt"><div class="receipt-in">
+      <div class="r-top">
+        <span class="eyebrow" style="color:var(--green-deep)">Тебе подходит</span>
+        <div class="r-name">${r.name}</div>
+        <div class="r-for">${r.forwhom}</div>
+      </div>
+      <div class="r-line"><span class="k">${r.rateLabel}</span><span class="v">${rateVal}</span></div>
+      ${r.rows.map(row=>`<div class="r-line"><span class="k">${row[0]}</span><span class="v">${row[1]}</span></div>`).join('')}
+      <div class="r-why">${r.why}</div>
+      <div class="r-alt">↪ <b>Запасной вариант:</b> ${r.alt}</div>
+      <div class="r-foot">— ориентир, сверь с бухгалтером —</div>
+    </div></div>
+    <div class="result-actions">
+      <button class="btn btn-ghost" id="restart">Пройти заново</button>
+      <a class="btn btn-primary" href="#consult">Обсудить с бухгалтером</a>
+    </div>`;
+  document.getElementById('restart').addEventListener('click',()=>{idx=0;for(const k in answers)delete answers[k];renderStep();});
+}
+
+renderStep();
+
+function rays(id,r1,r2){
+  const g=document.getElementById(id); if(!g)return; let s='';
+  for(let i=0;i<16;i++){const a=i*22.5*Math.PI/180;
+    const x1=100+Math.cos(a)*r1,y1=100+Math.sin(a)*r1,x2=100+Math.cos(a)*r2,y2=100+Math.sin(a)*r2;
+    s+=`<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}"/>`;}
+  g.innerHTML=s;
+}
+rays('rays',44,72); rays('rays2',50,78);
+document.getElementById('yr').textContent=new Date().getFullYear();
+/* Кнопка контакта ведёт на WhatsApp +996 555 887 224 (задано в href выше) */
+</script>
+</body>
+</html>
