@@ -175,6 +175,12 @@
   .mcard h3{font-size:18px;margin-top:8px;letter-spacing:-.01em}
   .mcard p{color:var(--ink-soft);margin-top:8px;font-size:15px}
 
+  /* калькулятор — призыв */
+  .calc-cta{background:var(--card);border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow);padding:38px 40px;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center}
+  .calc-cta h2{font-size:clamp(24px,3.2vw,32px);margin-top:10px}
+  .calc-cta p{color:var(--ink-soft);margin-top:12px;font-size:16.5px;max-width:560px}
+  @media(max-width:700px){.calc-cta{grid-template-columns:1fr;padding:28px 24px}}
+
   .cta{background:linear-gradient(135deg,var(--green-deep),var(--ink));color:var(--paper);border-radius:28px;padding:52px 44px;position:relative;overflow:hidden}
   .cta .sun{position:absolute;right:-80px;bottom:-120px;width:380px;opacity:.35;pointer-events:none}
   .cta-inner{position:relative;max-width:620px}
@@ -210,6 +216,7 @@
       <a href="#rezhimy">Режимы</a>
       <a href="#podbor">Подбор</a>
       <a href="#slovar">Словарь</a>
+      <a href="smz-calculator.html">Калькулятор</a>
       <a href="#consult" class="nav-cta">Консультация</a>
     </nav>
   </div>
@@ -229,6 +236,7 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
       <a href="#start" class="btn btn-ghost">Я вообще новичок</a>
+      <a href="smz-calculator.html" class="btn btn-ghost">Калькулятор налогов</a>
     </div>
     <div class="hero-note" style="margin-top:20px">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#157A5B" stroke-width="1.6"/><path d="M12 7v5l3 2" stroke="#157A5B" stroke-width="1.6" stroke-linecap="round"/></svg>
@@ -356,6 +364,20 @@
   <div class="disclaimer">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3l9 16H3L12 3z" stroke="#9A7420" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 10v4M12 16.5v.5" stroke="#9A7420" stroke-width="1.7" stroke-linecap="round"/></svg>
     <div><b>Важно:</b> ставки выверены по Налоговому кодексу КР (от 18.01.2022 № 3) в редакции до 31 декабря 2025 года. Это ориентир, а не официальная консультация: базовые суммы патента утверждает Кабмин, а точный режим зависит от деталей бизнеса — уточни у бухгалтера перед регистрацией.</div>
+  </div>
+</div></section>
+
+<!-- КАЛЬКУЛЯТОР -->
+<section class="block" id="calc"><div class="wrap">
+  <div class="calc-cta">
+    <div>
+      <span class="eyebrow">Зарплата и налоги</span>
+      <h2>Калькулятор СМЗ 2026</h2>
+      <p>Посчитай подоходный налог и страховые взносы в Соцфонд по среднемесячной зарплате для своего района — с точными ставками на 2026 год.</p>
+    </div>
+    <a href="smz-calculator.html" class="btn btn-primary">Открыть калькулятор
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
   </div>
 </div></section>
 
