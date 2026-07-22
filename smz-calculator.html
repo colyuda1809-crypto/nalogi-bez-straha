@@ -1,0 +1,532 @@
+<!--
+  Раздел «Калькулятор СМЗ 2026» для сайта «Налоги без страха»
+  Обновление 2026-07-22: по указанию бухгалтера строки внизу приведены к тарифу,
+  который она использует:
+    - Взносы работодателя (P)          = 10,25% × K
+    - Сумма ПФ (Q) — всего кроме ГНПФ  = 10,25% × K
+    - Сумма ГНПФ (R)                   = 2% × K   (верно, без изменений)
+  Подоходный налог, взнос работника (G) и «на руки» не менялись.
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Калькулятор СМЗ 2026 — Налоги без страха</title>
+<style>
+  :root{
+    --ink:#12261e;
+    --paper:#f6f4ee;
+    --card:#ffffff;
+    --teal:#0f5c4d;
+    --teal-deep:#0a3f35;
+    --gold:#c99a3d;
+    --line:#dcd6c6;
+    --muted:#5b6b64;
+    --danger:#a4402c;
+    --radius:14px;
+    --font-display: "Georgia", "Times New Roman", serif;
+    --font-body: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.5;
+  }
+  .smz-wrap{
+    max-width:960px;
+    margin:0 auto;
+    padding:48px 20px 80px;
+  }
+  .smz-eyebrow{
+    font-size:13px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--teal);
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  h1.smz-title{
+    font-family:var(--font-display);
+    font-size:clamp(28px,4vw,40px);
+    line-height:1.15;
+    margin:0 0 14px;
+    color:var(--teal-deep);
+  }
+  .smz-sub{
+    color:var(--muted);
+    max-width:640px;
+    margin:0 0 36px;
+    font-size:15.5px;
+  }
+  .smz-grid{
+    display:grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap:24px;
+  }
+  @media (max-width: 760px){
+    .smz-grid{grid-template-columns:1fr;}
+  }
+  .smz-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:28px;
+  }
+  .smz-field{margin-bottom:20px;}
+  .smz-field label{
+    display:block;
+    font-size:13px;
+    font-weight:600;
+    color:var(--teal-deep);
+    margin-bottom:8px;
+    letter-spacing:.02em;
+  }
+  .smz-field select,
+  .smz-field input{
+    width:100%;
+    padding:12px 14px;
+    border:1.5px solid var(--line);
+    border-radius:10px;
+    font-size:16px;
+    font-family:var(--font-body);
+    background:#fff;
+    color:var(--ink);
+    transition:border-color .15s;
+  }
+  .smz-field select:focus,
+  .smz-field input:focus{
+    outline:none;
+    border-color:var(--teal);
+  }
+  .smz-hint{
+    font-size:12.5px;
+    color:var(--muted);
+    margin-top:6px;
+  }
+  .smz-result-card{
+    background:linear-gradient(165deg, var(--teal-deep), var(--teal));
+    color:#f2ede0;
+    border-radius:var(--radius);
+    padding:28px;
+  }
+  .smz-result-card .smz-base-label{
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    opacity:.75;
+    margin-bottom:4px;
+  }
+  .smz-result-card .smz-base-value{
+    font-family:var(--font-display);
+    font-size:30px;
+    margin-bottom:22px;
+  }
+  .smz-line{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    padding:12px 0;
+    border-top:1px solid rgba(242,237,224,.18);
+    font-size:14.5px;
+    gap:14px;
+  }
+  .smz-line:first-of-type{border-top:none;}
+  .smz-line .smz-line-name{opacity:.85;}
+  .smz-line .smz-line-value{
+    font-weight:700;
+    font-size:16px;
+    font-variant-numeric: tabular-nums;
+    white-space:nowrap;
+  }
+  .smz-line.total{
+    margin-top:6px;
+    padding-top:16px;
+    border-top:1px solid rgba(242,237,224,.35);
+  }
+  .smz-line.total .smz-line-value{
+    font-size:22px;
+    color:var(--gold);
+  }
+  .smz-note{
+    margin-top:28px;
+    font-size:12.5px;
+    color:var(--muted);
+    border-top:1px dashed var(--line);
+    padding-top:16px;
+  }
+  .smz-note a{color:var(--teal);}
+  .smz-badge{
+    display:inline-block;
+    font-size:11.5px;
+    font-weight:700;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    background:rgba(15,92,77,.08);
+    color:var(--teal-deep);
+    border-radius:999px;
+    padding:4px 10px;
+    margin-bottom:16px;
+  }
+  .smz-tabnav{
+    display:flex;
+    gap:8px;
+    margin-bottom:44px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:14px;
+    flex-wrap:wrap;
+  }
+  .smz-tabnav a{
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--teal-deep);
+    text-decoration:none;
+    padding:8px 14px;
+    border-radius:999px;
+    background:rgba(15,92,77,.06);
+  }
+  .smz-tabnav a:hover{background:rgba(15,92,77,.12);}
+  .smz-section{margin-top:72px;}
+  .smz-section h2{
+    font-family:var(--font-display);
+    font-size:26px;
+    color:var(--teal-deep);
+    margin:0 0 8px;
+  }
+  .smz-section .smz-section-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 28px;
+    max-width:640px;
+  }
+  .smz-code-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+    margin-bottom:24px;
+  }
+  @media (max-width:760px){.smz-code-grid{grid-template-columns:1fr;}}
+  .smz-code-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:20px 22px;
+  }
+  .smz-code-card .smz-code-label{
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--muted);
+    margin-bottom:6px;
+  }
+  .smz-code-card .smz-code-value{
+    font-family:var(--font-display);
+    font-size:24px;
+    color:var(--teal-deep);
+    margin-bottom:6px;
+  }
+  .smz-code-card .smz-code-desc{
+    font-size:13px;
+    color:var(--muted);
+    line-height:1.5;
+  }
+  .smz-fund-group{margin-bottom:32px;}
+  .smz-fund-group h3{
+    font-size:16px;
+    color:var(--teal-deep);
+    margin:0 0 12px;
+    padding-bottom:8px;
+    border-bottom:1px solid var(--line);
+  }
+  table.smz-table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13px;
+  }
+  table.smz-table th{
+    text-align:left;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    color:var(--muted);
+    font-weight:600;
+    padding:8px 10px;
+    border-bottom:1.5px solid var(--line);
+    white-space:nowrap;
+  }
+  table.smz-table td{
+    padding:9px 10px;
+    border-bottom:1px solid var(--line);
+    color:var(--ink);
+  }
+  table.smz-table td.num{
+    text-align:right;
+    font-variant-numeric:tabular-nums;
+  }
+  table.smz-table tr:hover td{background:rgba(15,92,77,.03);}
+  .smz-warn-box{
+    background:#fbf2e2;
+    border:1px solid #e8cf9c;
+    border-radius:10px;
+    padding:14px 18px;
+    font-size:13px;
+    color:#6b4d15;
+    margin-bottom:24px;
+  }
+</style>
+</head>
+<body>
+<main class="smz-wrap">
+  <div class="smz-eyebrow">Налоги без страха · Раздел «Зарплата и налоги»</div>
+  <h1 class="smz-title">Калькулятор СМЗ 2026</h1>
+  <p class="smz-sub">
+    Считает подоходный налог и страховые взносы по категории «основной работник»
+    с учётом среднемесячной зарплаты по вашему району или городу.
+  </p>
+
+  <nav class="smz-tabnav">
+    <a href="index.html">← На сайт</a>
+    <a href="#smz-calc">Калькулятор</a>
+    <a href="#smz-code">Налоговый кодекс</a>
+    <a href="#smz-fund">Соцфонд — тарифы</a>
+  </nav>
+
+  <div id="smz-calc"></div>
+
+  <div class="smz-grid">
+    <div class="smz-card">
+      <span class="smz-badge">Шаг 1 — данные сотрудника</span>
+
+      <div class="smz-field">
+        <label for="smz-region">Район / город</label>
+        <select id="smz-region"></select>
+        <div class="smz-hint">СМЗ на 2026 год берётся из данных ГНС КР для выбранного района.</div>
+      </div>
+
+      <div class="smz-field">
+        <label for="smz-salary">Фактическая начисленная зарплата за месяц, сом (A)</label>
+        <input type="number" id="smz-salary" min="0" step="100" placeholder="Например, 25000">
+        <div class="smz-hint">Если зарплата ниже пропорционального СМЗ — взносы считаются от СМЗ (см. рабочие дни ниже).</div>
+      </div>
+
+      <div class="smz-field" style="display:flex; gap:14px;">
+        <div style="flex:1;">
+          <label for="smz-rd">Рабочих дней в месяце (РД)</label>
+          <input type="number" id="smz-rd" min="1" step="1" value="22">
+        </div>
+        <div style="flex:1;">
+          <label for="smz-od">Отработано дней (ОД)</label>
+          <input type="number" id="smz-od" min="0" step="1" value="22">
+        </div>
+      </div>
+      <div class="smz-hint" style="margin:-10px 0 20px;">Если месяц отработан не полностью — минимальный порог СМЗ пропорционально уменьшается: СМЗ × ОД / РД.</div>
+
+      <div class="smz-field">
+        <label for="smz-deduction">Персональный вычет по подоходному налогу, сом ⚠️</label>
+        <input type="number" id="smz-deduction" min="0" step="10" value="650">
+        <div class="smz-hint">Меняется ежегодно постановлением Кабмина — проверяй актуальное значение перед расчётом. Сейчас стоит 650 сом (пример на июнь 2026).</div>
+      </div>
+    </div>
+
+    <div class="smz-result-card">
+      <span class="smz-base-label">Страховая база (K)</span>
+      <div class="smz-base-value" id="smz-base">— сом</div>
+
+      <div class="smz-line">
+        <span class="smz-line-name">Взнос работника в соцфонд (G), 10% от K</span>
+        <span class="smz-line-value" id="smz-employee-contrib">—</span>
+      </div>
+      <div class="smz-line">
+        <span class="smz-line-name">Персональный вычет (E)</span>
+        <span class="smz-line-value" id="smz-personal-deduction">—</span>
+      </div>
+      <div class="smz-line">
+        <span class="smz-line-name">Налоговая база подоходного налога (I)</span>
+        <span class="smz-line-value" id="smz-tax-base">—</span>
+      </div>
+      <div class="smz-line">
+        <span class="smz-line-name">Подоходный налог, 10% от I</span>
+        <span class="smz-line-value" id="smz-income-tax">—</span>
+      </div>
+      <div class="smz-line">
+        <span class="smz-line-name">Доначисление ПН с СМЗ (N) — не подтверждено ⚠️</span>
+        <span class="smz-line-value" id="smz-n-unconfirmed">0 сом</span>
+      </div>
+      <div class="smz-line">
+        <span class="smz-line-name">На руки сотруднику</span>
+        <span class="smz-line-value" id="smz-net">—</span>
+      </div>
+      <div class="smz-line">
+        <span class="smz-line-name">Взносы работодателя (P), 2,25% от K</span>
+        <span class="smz-line-value" id="smz-employer-contrib">—</span>
+      </div>
+      <div class="smz-line">
+        <span class="smz-line-name">Сумма ПФ (Q) — всего кроме ГНПФ, 10,25% от K</span>
+        <span class="smz-line-value" id="smz-pf-total">—</span>
+      </div>
+      <div class="smz-line">
+        <span class="smz-line-name">Сумма ГНПФ (R), 2% от K</span>
+        <span class="smz-line-value" id="smz-gnpf">—</span>
+      </div>
+      <div class="smz-line total">
+        <span class="smz-line-name">Полная стоимость сотрудника для компании</span>
+        <span class="smz-line-value" id="smz-total-cost">—</span>
+      </div>
+    </div>
+  </div>
+
+  <p class="smz-note">
+    Справочный расчёт для внутреннего использования бухгалтерией, не является
+    официальной справкой или заменой консультации с налоговым органом. Перед
+    подачей отчётности сверяйте итоговые суммы с действующим законодательством.
+  </p>
+
+  <section id="smz-code" class="smz-section">
+    <h2>Налоговый кодекс — краткая справка</h2>
+    <p class="smz-section-sub">
+      Ключевые ставки и правила для расчёта подоходного налога с зарплаты наёмного
+      работника.
+    </p>
+
+    <div class="smz-warn-box">
+      Это не полный текст Налогового кодекса КР, а рабочая шпаргалка бухгалтера
+      по одной конкретной задаче — расчёту зарплатных налогов.
+    </div>
+
+    <div class="smz-code-grid">
+      <div class="smz-code-card">
+        <div class="smz-code-label">Подоходный налог</div>
+        <div class="smz-code-value">10%</div>
+        <div class="smz-code-desc">Ставка от налоговой базы (I) — дохода за вычетом стандартных вычетов.</div>
+      </div>
+      <div class="smz-code-card">
+        <div class="smz-code-label">Персональный вычет</div>
+        <div class="smz-code-value">650 сом ⚠️</div>
+        <div class="smz-code-desc">Пример на июнь 2026 — меняется ежегодно постановлением Кабмина, проверяй актуальное значение перед расчётом.</div>
+      </div>
+      <div class="smz-code-card">
+        <div class="smz-code-label">Взнос работника в соцфонд</div>
+        <div class="smz-code-value">10%</div>
+        <div class="smz-code-desc">ПФ 8% + ГНПФ 2% от страховой базы — вычитается из дохода ДО применения ставки подоходного налога.</div>
+      </div>
+      <div class="smz-code-card">
+        <div class="smz-code-label">Формула базы налога</div>
+        <div class="smz-code-value">A − E − G</div>
+        <div class="smz-code-desc">Зарплата минус персональный вычет минус взнос в соцфонд = налоговая база (I).</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="smz-fund" class="smz-section">
+    <h2>Соцфонд — тарифы страховых взносов</h2>
+    <p class="smz-section-sub">
+      Полная таблица по всем категориям плательщиков — Инструкция о порядке начисления
+      и уплаты страховых взносов (к постановлению Кабинета Министров КР от 3 декабря 2024 года №729).
+    </p>
+    <div id="smz-fund-tables"></div>
+  </section>
+
+</main>
+
+<script>
+  const REGIONS = [{"name": "Кыргызская Республика", "smz": 36047}, {"name": "Кыргызская Республика (за исключением Кумтора)", "smz": 35097}, {"name": "Баткенская область", "smz": 26662}, {"name": "Баткенский район", "smz": 23946}, {"name": "Лейлекский район", "smz": 28019}, {"name": "Кадамжайский район", "smz": 25090}, {"name": "г. Баткен", "smz": 36672}, {"name": "г. Сулюкта", "smz": 21784}, {"name": "г. Кызыл-Кия", "smz": 22398}, {"name": "Жалал-Абадская область", "smz": 31229}, {"name": "Аксыйский район", "smz": 23084}, {"name": "Ала-Букинский район", "smz": 39564}, {"name": "Базар-Коргонский район", "smz": 22758}, {"name": "Ноокенский район", "smz": 33406}, {"name": "Сузакский район", "smz": 23854}, {"name": "Тогуз-Тороузский район", "smz": 40861}, {"name": "Токтогульский район", "smz": 29194}, {"name": "Чаткальский район", "smz": 55183}, {"name": "г. Джалал-Абад", "smz": 29658}, {"name": "г. Кара-Куль", "smz": 50642}, {"name": "г. Майлуу-Суу", "smz": 23008}, {"name": "г. Таш-Кумыр", "smz": 22155}, {"name": "Иссык-Кульская область", "smz": 41084}, {"name": "Иссык-Кульская область (за исключением Кумтора)", "smz": 26460}, {"name": "Ак-Суйский район", "smz": 26763}, {"name": "Жети-Огузский район", "smz": 96813}, {"name": "Жети-Огузский район (за исключением Кумтора)", "smz": 24164}, {"name": "Иссык-Кульский район", "smz": 24724}, {"name": "Тонский район", "smz": 26740}, {"name": "Тюпский район", "smz": 25155}, {"name": "г. Каракол", "smz": 28986}, {"name": "г. Балыкчы", "smz": 26722}, {"name": "Нарынская область", "smz": 35205}, {"name": "Ак-Талинский район", "smz": 30688}, {"name": "Ат-Башынский район", "smz": 33317}, {"name": "Жумгальский район", "smz": 31617}, {"name": "Кочкорский район", "smz": 28888}, {"name": "Нарынский район", "smz": 33285}, {"name": "г. Нарын", "smz": 43064}, {"name": "Ошская область", "smz": 25200}, {"name": "Алайский район", "smz": 32211}, {"name": "Араванский район", "smz": 22723}, {"name": "Кара-Кулжинский район", "smz": 25309}, {"name": "Кара-Сууский район", "smz": 24382}, {"name": "Ноокатский район", "smz": 24523}, {"name": "Узгенский район", "smz": 23665}, {"name": "Чон-Алайский район", "smz": 32430}, {"name": "Таласская область", "smz": 34068}, {"name": "Айтматовский район", "smz": 23794}, {"name": "Бакай-Атинский район", "smz": 22311}, {"name": "Манасский район", "smz": 21738}, {"name": "Таласский район", "smz": 61845}, {"name": "г. Талас", "smz": 29972}, {"name": "Чуйская область", "smz": 27819}, {"name": "Аламудунский район", "smz": 25465}, {"name": "Жайылский район", "smz": 25841}, {"name": "Кеминский район", "smz": 34592}, {"name": "Московский район", "smz": 24018}, {"name": "Панфиловский район", "smz": 26572}, {"name": "Сокулукский район", "smz": 25171}, {"name": "Ысык-Атинский район", "smz": 25589}, {"name": "Чуйский район", "smz": 27435}, {"name": "г. Токмок", "smz": 26262}, {"name": "г. Бишкек", "smz": 44074}, {"name": "Ленинский район (г. Бишкек)", "smz": 44091}, {"name": "Октябрьский район (г. Бишкек)", "smz": 40734}, {"name": "Первомайский район (г. Бишкек)", "smz": 48349}, {"name": "Свердловский район (г. Бишкек)", "smz": 40636}, {"name": "г. Ош", "smz": 30039}];
+
+  const TARIFFS = {"1. Основной тариф (для юридических лиц)": [["001", "Основной работник", 27.25, 15, 8, 2, 0, 0.25, 0, 2, "60% СМЗ"], ["003", "Пенсионер", 25.25, 15, 8, 2, 0, 0.25, 0, 0, "60% СМЗ"], ["100", "Инвалиды I и II группы", 17.25, 15, 2, 0, 0, 0.25, 0, 0, "60% СМЗ"], ["101", "Участники ВОВ", 15.25, 15, 0, 0, 0, 0.25, 0, 0, "60% СМЗ"], ["011", "Иностранный гражданин / лицо без гражданства", 27.25, 15, 8, 2, 0, 0.25, 0, 2, "60% СМЗ"]], "4. Субъекты предпринимательства, НКО, ТСЖ, профсоюзы, ИП с наёмными работниками": [["001", "Основной работник", 12.25, 1, 8, 1, 0, 0.25, 0, 2, "100% СМЗ"], ["003", "Пенсионер", 10.25, 1, 8, 1, 0, 0.25, 0, 0, "100% СМЗ"], ["100", "Инвалиды I и II группы", 3.25, 1, 2, 0, 0, 0.25, 0, 0, "100% СМЗ"]], "7. Парк высоких технологий": [["001", "Основной работник", 12, 0, 10, 0, 0, 0, 0, 2, "СМЗ"], ["003", "Пенсионер", 10, 0, 10, 0, 0, 0, 0, 0, "СМЗ"]]};
+
+  const fundContainer = document.getElementById('smz-fund-tables');
+  Object.entries(TARIFFS).forEach(([groupName, rows]) => {
+    const group = document.createElement('div');
+    group.className = 'smz-fund-group';
+    const h3 = document.createElement('h3');
+    h3.textContent = groupName;
+    group.appendChild(h3);
+
+    const table = document.createElement('table');
+    table.className = 'smz-table';
+    table.innerHTML = `
+      <thead>
+        <tr>
+          <th>Код</th><th>Категория</th><th>Всего, %</th>
+          <th>ПФ раб-тель</th><th>ПФ работник</th>
+          <th>ФОМС раб-тель</th><th>ФОМС работник</th>
+          <th>ФОТ раб-тель</th><th>ФОТ работник</th>
+          <th>ГНПФ работник</th><th>Порог СМЗ</th>
+        </tr>
+      </thead>
+      <tbody></tbody>`;
+    const tbody = table.querySelector('tbody');
+    rows.forEach(r => {
+      const [code, name, total, pfEr, pfEe, fomsEr, fomsEe, fotEr, fotEe, gnpf, note] = r;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${code}</td><td>${name}</td><td class="num">${total}</td>
+        <td class="num">${pfEr}</td><td class="num">${pfEe}</td>
+        <td class="num">${fomsEr}</td><td class="num">${fomsEe}</td>
+        <td class="num">${fotEr}</td><td class="num">${fotEe}</td>
+        <td class="num">${gnpf}</td><td>${note}</td>`;
+      tbody.appendChild(tr);
+    });
+    group.appendChild(table);
+    fundContainer.appendChild(group);
+  });
+
+  const regionSelect = document.getElementById('smz-region');
+  REGIONS.forEach((r, i) => {
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = `${r.name} — ${r.smz.toLocaleString('ru-RU')} сом`;
+    if (r.name === 'г. Бишкек') opt.selected = true;
+    regionSelect.appendChild(opt);
+  });
+
+  const salaryInput = document.getElementById('smz-salary');
+  const deductionInput = document.getElementById('smz-deduction');
+  const rdInput = document.getElementById('smz-rd');
+  const odInput = document.getElementById('smz-od');
+
+  const fmt = (n) => n.toLocaleString('ru-RU', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' сом';
+
+  function recalc(){
+    const region = REGIONS[regionSelect.value];
+    const salary = parseFloat(salaryInput.value) || 0;
+    const personalDeduction = parseFloat(deductionInput.value) || 0;
+    const rd = parseFloat(rdInput.value) || 1;
+    const od = Math.min(parseFloat(odInput.value) || 0, rd);
+
+    const smzForPeriod = region.smz * (od / rd);
+    const K = Math.max(salary, smzForPeriod);
+    const G = K * 0.10;                    // взнос работника в соцфонд (ПФ 8% + ГНПФ 2%)
+    const E = personalDeduction;
+    const H = E + G;
+    const I = Math.max(salary - H, 0);
+    const incomeTax = I * 0.10;
+    const employerContrib = K * 0.0225;    // Взносы работодателя (P) — 2,25% (по указанию бухгалтера)
+    const gnpf = K * 0.02;                 // ГНПФ (R) — 2%
+    const pfGroup = K * 0.1025;            // Сумма ПФ (Q) — всего кроме ГНПФ, 10,25%
+    const net = salary - incomeTax - G;
+    const totalCost = salary + employerContrib;
+
+    document.getElementById('smz-base').textContent = fmt(K);
+    document.getElementById('smz-employee-contrib').textContent = fmt(G);
+    document.getElementById('smz-personal-deduction').textContent = fmt(E);
+    document.getElementById('smz-tax-base').textContent = fmt(I);
+    document.getElementById('smz-income-tax').textContent = fmt(incomeTax);
+    document.getElementById('smz-net').textContent = fmt(Math.max(net, 0));
+    document.getElementById('smz-employer-contrib').textContent = fmt(employerContrib);
+    document.getElementById('smz-pf-total').textContent = fmt(pfGroup);
+    document.getElementById('smz-gnpf').textContent = fmt(gnpf);
+    document.getElementById('smz-total-cost').textContent = fmt(totalCost);
+  }
+
+  regionSelect.addEventListener('change', recalc);
+  salaryInput.addEventListener('input', recalc);
+  deductionInput.addEventListener('input', recalc);
+  rdInput.addEventListener('input', recalc);
+  odInput.addEventListener('input', recalc);
+  recalc();
+</script>
+</body>
+</html>
